@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "ap-southeaset-2"
+  default     = "ap-southeast-2"
 }
 
 variable "project" {
@@ -9,9 +9,9 @@ variable "project" {
   type        = map(any)
   default = {
     project-alpha = {
-      public_subnet_count  = 2,
-      private_subnet_count = 2,
-      instances_per_subnet = 2,
+      public_subnet_count  = 1,
+      private_subnet_count = 1,
+      instances_per_subnet = 1,
       instance_type        = "t2.micro",
       environment          = "test"
     },
