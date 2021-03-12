@@ -1,12 +1,29 @@
 data "aws_ami" "amazon_linux" {
   most_recent = true
-  owners      = ["amazon"]
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+    values = ["amzn2-ami-hvm-2.0.*"]
   }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  owners = ["amazon"] # Canonical
 }
+
 
 resource "aws_instance" "app" {
   count = var.instance_count
@@ -16,6 +33,8 @@ resource "aws_instance" "app" {
 
   subnet_id              = var.subnet_ids[count.index % length(var.subnet_ids)]
   vpc_security_group_ids = var.security_group_ids
+
+  key_name      = "aws-devops"
 
   user_data = <<-EOF
     #!/bin/bash

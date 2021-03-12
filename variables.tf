@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-1"
+  default     = "ap-southeaset-2"
 }
 
 variable "project" {
@@ -13,14 +13,14 @@ variable "project" {
       private_subnet_count = 2,
       instances_per_subnet = 2,
       instance_type        = "t2.micro",
-      environment          = "dev"
+      environment          = "test"
     },
     project-beta = {
       public_subnet_count  = 1,
       private_subnet_count = 1,
       instances_per_subnet = 2,
-      instance_type        = "t2.nano",
-      environment          = "test"
+      instance_type        = "t2.micro",
+      environment          = "stage"
     }
   }
 }
