@@ -42,7 +42,7 @@ resource "aws_instance" "app" {
     sudo yum install httpd -y
     sudo systemctl enable httpd
     sudo systemctl start httpd
-    echo "<html><body><div>Hello, world!</div></body></html>" > /var/www/html/index.html
+    echo "<html><body><div>Hello, ${var.project_name} for ${var.environment}</div></body></html>" > /var/www/html/index.html
     EOF
 
   tags = {
